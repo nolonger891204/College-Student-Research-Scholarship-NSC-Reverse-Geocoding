@@ -1,0 +1,647 @@
+
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.benchmark.com/quest/> .
+@base <http://example.com/base/> .
+
+
+
+################################################
+# TripleMap for 39: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Building
+
+<mapping1_39> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"BUILDING\".\"id\" AS \"BUILDINGid\", \"BUILDING\".\"geom\" AS \"BUILDINGgeom\", \"BUILDING\".\"name\" AS \"BUILDINGname\" FROM \"BUILDING\" WHERE \"BUILDING\".\"id\" IS NOT NULL AND \"BUILDING\".\"geom\" IS NOT NULL AND \"BUILDING\".\"name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Building/{\"BUILDINGid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Building>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"BUILDINGname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster/MultiPloygon/{\"BUILDINGgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 40: http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon
+
+<mapping1_40> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"BUILDING\".\"geom\" AS \"BUILDINGgeom\", \"BUILDING\".\"WKT\" AS \"BUILDINGWKT\" FROM \"BUILDING\" WHERE \"BUILDING\".\"geom\" IS NOT NULL AND \"BUILDING\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/MultiPloygon/{\"BUILDINGgeom\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"BUILDINGWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 41: http://www.semanticweb.org/win/ontologies/2023/1/disaster#County
+
+<mapping1_41> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"COUNTYMOI\".\"id\" AS \"COUNTYMOIid\", \"COUNTYMOI\".\"geom\" AS \"COUNTYMOIgeom\", \"COUNTYMOI\".\"countyname\" AS \"COUNTYMOIcountyname\" FROM \"COUNTYMOI\" WHERE \"COUNTYMOI\".\"id\" IS NOT NULL AND \"COUNTYMOI\".\"geom\" IS NOT NULL AND \"COUNTYMOI\".\"countyname\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/County/{\"COUNTYMOIid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#County>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"COUNTYMOIcountyname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster/MultiPloygon/{\"COUNTYMOIgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 42: http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon
+
+<mapping1_42> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"COUNTYMOI\".\"WKT\" AS \"COUNTYMOIWKT\", \"COUNTYMOI\".\"geom\" AS \"COUNTYMOIgeom\" FROM \"COUNTYMOI\" WHERE \"COUNTYMOI\".\"WKT\" IS NOT NULL AND \"COUNTYMOI\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/MultiPloygon/{\"COUNTYMOIgeom\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"COUNTYMOIWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 43: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Coastline
+
+<mapping1_43> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INSHORE\".\"id\" AS \"INSHOREid\", \"INSHORE\".\"geom\" AS \"INSHOREgeom\", \"INSHORE\".\"縣市別\" AS \"INSHORE縣市別\" FROM \"INSHORE\" WHERE \"INSHORE\".\"id\" IS NOT NULL AND \"INSHORE\".\"geom\" IS NOT NULL AND \"INSHORE\".\"縣市別\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Coastline/{\"INSHOREid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Coastline>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"INSHORE縣市別\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster/MultiPloygon/{\"INSHOREgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 44: http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon
+
+<mapping1_44> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INSHORE\".\"WKT\" AS \"INSHOREWKT\", \"INSHORE\".\"geom\" AS \"INSHOREgeom\" FROM \"INSHORE\" WHERE \"INSHORE\".\"WKT\" IS NOT NULL AND \"INSHORE\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/MultiPloygon/{\"INSHOREgeom\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INSHOREWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 45: http://www.semanticweb.org/win/ontologies/2023/1/disaster#River
+
+<mapping1_45> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"RIVER\".\"id\" AS \"RIVERid\", \"RIVER\".\"geom\" AS \"RIVERgeom\", \"RIVER\".\"river_name\" AS \"RIVERriver_name\" FROM \"RIVER\" WHERE \"RIVER\".\"id\" IS NOT NULL AND \"RIVER\".\"geom\" IS NOT NULL AND \"RIVER\".\"river_name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/River/{\"RIVERid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#River>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"RIVERriver_name\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster/MultiPloygon/{\"RIVERgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 46: http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon
+
+<mapping1_46> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"RIVER\".\"WKT\" AS \"RIVERWKT\", \"RIVER\".\"geom\" AS \"RIVERgeom\" FROM \"RIVER\" WHERE \"RIVER\".\"WKT\" IS NOT NULL AND \"RIVER\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/MultiPloygon/{\"RIVERgeom\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#MultiPloygon>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"RIVERWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 47: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Road
+
+<mapping1_47> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"ROAD\".\"id\" AS \"ROADid\", \"ROAD\".\"geom\" AS \"ROADgeom\", \"ROAD\".\"rname\" AS \"ROADname\", \"ROAD\".\"sname\" AS \"ROADsname\" FROM \"ROAD\" WHERE \"ROAD\".\"id\" IS NOT NULL AND \"ROAD\".\"geom\" IS NOT NULL AND \"ROAD\".\"name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Road/{\"ROADid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Road>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"ROADname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#roadsectionname> ;
+		rr:objectMap [ rr:column "\"ROADsname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"ROADgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 48: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_48> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"ROAD\".\"WKT\" AS \"ROADWKT\", \"ROAD\".\"geom\" AS \"ROADgeom\" FROM \"ROAD\" WHERE \"ROAD\".\"WKT\" IS NOT NULL AND \"ROAD\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"ROADgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"ROADWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 49: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Spot
+
+<mapping1_49> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SPOT\".\"id\" AS \"SPOTid\", \"SPOT\".\"geom\" AS \"SPOTgeom\", \"SPOT\".\"mark_name\" AS \"SPOTmark_name\" FROM \"SPOT\" WHERE \"SPOT\".\"id\" IS NOT NULL AND \"SPOT\".\"geom\" IS NOT NULL AND \"SPOT\".\"mark_name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Spot/{\"SPOTid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Spot>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"SPOTmark_name\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SPOTgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 50: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_50> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SPOT\".\"WKT\" AS \"SPOTWKT\", \"SPOT\".\"geom\" AS \"SPOTgeom\" FROM \"SPOT\" WHERE \"SPOT\".\"WKT\" IS NOT NULL AND \"SPOT\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SPOTgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"SPOTWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 51: http://www.semanticweb.org/win/ontologies/2023/1/disaster#HydraulicEngineering
+
+<mapping1_51> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SWRESOIR\".\"id\" AS \"SWRESOIRid\", \"SWRESOIR\".\"geom\" AS \"SWRESOIRgeom\", \"SWRESOIR\".\"res_name\" AS \"SWRESOIRres_name\" FROM \"SWRESOIR\" WHERE \"SWRESOIR\".\"id\" IS NOT NULL AND \"SWRESOIR\".\"geom\" IS NOT NULL AND \"SWRESOIR\".\"res_name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/HydraulicEngineering/{\"SWRESOIRid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#HydraulicEngineering>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"SWRESOIRres_name\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SWRESOIRgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 52: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_52> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SWRESOIR\".\"WKT\" AS \"SWRESOIRWKT\", \"SWRESOIR\".\"geom\" AS \"SWRESOIRgeom\" FROM \"SWRESOIR\" WHERE \"SWRESOIR\".\"WKT\" IS NOT NULL AND \"SWRESOIR\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SWRESOIRgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"SWRESOIRWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 53: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Township
+
+<mapping1_53> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"TOWNMOI\".\"id\" AS \"TOWNMOIid\", \"TOWNMOI\".\"geom\" AS \"TOWNMOIgeom\", \"TOWNMOI\".\"townname\" AS \"TOWNMOItownname\", \"TOWNMOI\".\"countyname\" AS \"TOWNMOIcountyname\" FROM \"TOWNMOI\" WHERE \"TOWNMOI\".\"id\" IS NOT NULL AND \"TOWNMOI\".\"geom\" IS NOT NULL AND \"TOWNMOI\".\"townname\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Township/{\"TOWNMOIid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Township>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"TOWNMOItownname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#countyname> ;
+		rr:objectMap [ rr:column "\"TOWNMOIcountyname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"TOWNMOIgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 54: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_54> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"TOWNMOI\".\"WKT\" AS \"TOWNMOIWKT\", \"TOWNMOI\".\"geom\" AS \"TOWNMOIgeom\" FROM \"TOWNMOI\" WHERE \"TOWNMOI\".\"WKT\" IS NOT NULL AND \"TOWNMOI\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"TOWNMOIgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"TOWNMOIWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 55: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Province
+
+<mapping1_55> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"TAIWAN\".\"id\" AS \"TAIWANid\", \"TAIWAN\".\"geom\" AS \"TAIWANgeom\", \"TAIWAN\".\"name\" AS \"TAIWANname\" FROM \"TAIWAN\" WHERE \"TAIWAN\".\"id\" IS NOT NULL AND \"TAIWAN\".\"geom\" IS NOT NULL AND \"TAIWAN\".\"name\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Province/{\"TAIWANid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Province>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"TAIWANname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"TAIWANgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 56: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_56> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"TAIWAN\".\"WKT\" AS \"TAIWANWKT\", \"TAIWAN\".\"geom\" AS \"TAIWANgeom\" FROM \"TAIWAN\" WHERE \"TAIWAN\".\"WKT\" IS NOT NULL AND \"TAIWAN\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"TAIWANgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"TAIWANWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 57: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Village
+
+<mapping1_57> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"VILLAGEMOI\".\"id\" AS \"VILLAGEMOIid\", \"VILLAGEMOI\".\"geom\" AS \"VILLAGEMOIgeom\", \"VILLAGEMOI\".\"countyname\" AS \"VILLAGEMOIcountyname\", \"VILLAGEMOI\".\"townname\" AS \"VILLAGEMOItownname\", \"VILLAGEMOI\".\"villname\" AS \"VILLAGEMOIvillname\" FROM \"VILLAGEMOI\" WHERE \"VILLAGEMOI\".\"id\" IS NOT NULL AND \"VILLAGEMOI\".\"geom\" IS NOT NULL AND \"VILLAGEMOI\".\"villname\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Village/{\"VILLAGEMOIid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Village>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"VILLAGEMOIvillname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#countyname> ;
+		rr:objectMap [ rr:column "\"VILLAGEMOIcountyname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#townshipname> ;
+		rr:objectMap [ rr:column "\"VILLAGEMOItownname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"VILLAGEMOIgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 58: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_58> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"VILLAGEMOI\".\"WKT\" AS \"VILLAGEMOIWKT\", \"VILLAGEMOI\".\"geom\" AS \"VILLAGEMOIgeom\" FROM \"VILLAGEMOI\" WHERE \"VILLAGEMOI\".\"WKT\" IS NOT NULL AND \"VILLAGEMOI\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"VILLAGEMOIgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"VILLAGEMOIWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 59: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_59> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POLYGON1\".\"WKT\" AS \"INPUT_POLYGON1WKT\" FROM \"INPUT_POLYGON1\" WHERE \"INPUT_POLYGON1\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/polygon1";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POLYGON1WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 60: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_60> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POLYGON2\".\"WKT\" AS \"INPUT_POLYGON2WKT\" FROM \"INPUT_POLYGON2\" WHERE \"INPUT_POLYGON2\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/polygon2";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POLYGON2WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 61: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_61> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POINT1\".\"WKT\" AS \"INPUT_POINT1WKT\" FROM \"INPUT_POINT1\" WHERE \"INPUT_POINT1\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/point1";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POINT1WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 62: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_62> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POINT2\".\"WKT\" AS \"INPUT_POINT2WKT\" FROM \"INPUT_POINT2\" WHERE \"INPUT_POINT2\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/point2";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POINT2WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 63: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_63> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_LINE1\".\"WKT\" AS \"INPUT_LINE1WKT\" FROM \"INPUT_LINE1\" WHERE \"INPUT_LINE1\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/line1";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_LINE1WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 64: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_64> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_LINE2\".\"WKT\" AS \"INPUT_LINE2WKT\" FROM \"INPUT_LINE2\" WHERE \"INPUT_LINE2\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/line2";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_LINE2WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 65: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Hill
+
+<mapping1_65> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"HILL\".\"TOWNID\" AS \"HILLid\", \"HILL\".\"geom\" AS \"HILLgeom\", \"HILL\".\"townname\" AS \"HILLname\", \"HILL\".\"countyname\" AS \"HILLcountyname\" FROM \"HILL\" WHERE \"HILL\".\"id\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/HILL/{\"HILLid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Hill>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"HILLname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#countyname> ;
+		rr:objectMap [ rr:column "\"HILLcountyname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"HILLgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 66: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_66> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"HILL\".\"WKT\" AS \"HILLWKT\", \"HILL\".\"geom\" AS \"HILLgeom\" FROM \"HILL\" WHERE \"HILL\".\"WKT\" IS NOT NULL AND \"HILL\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"HILLgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"HILLWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 67: http://www.semanticweb.org/win/ontologies/2023/1/disaster#Place
+
+<mapping1_67> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"PLACE\".\"id\" AS \"PLACEid\", \"PLACE\".\"geom\" AS \"PLACEgeom\", \"PLACE\".\"place_name\" AS \"PLACEname\", \"PLACE\".\"county\" AS \"PLACEcountyname\", \"PLACE\".\"town\" AS \"PLACEtownshipname\" FROM \"PLACE\" WHERE \"PLACE\".\"id\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/Place/{\"PLACEid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#Place>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"PLACEname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#countyname> ;
+		rr:objectMap [ rr:column "\"PLACEcountyname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<http://www.semanticweb.org/win/ontologies/2023/1/disaster#townshipname> ;
+		rr:objectMap [ rr:column "\"PLACEtownshipname\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"PLACEgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 68: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_68> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"PLACE\".\"WKT\" AS \"PLACEWKT\", \"PLACE\".\"geom\" AS \"PLACEgeom\" FROM \"PLACE\" WHERE \"PLACE\".\"WKT\" IS NOT NULL AND \"PLACE\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"PLACEgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"PLACEWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+################################################
+# TripleMap for 69: http://www.semanticweb.org/win/ontologies/2023/1/disaster#SeaArea
+
+<mapping1_69> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SEAAREA\".\"id\" AS \"SEAAREAid\", \"SEAAREA\".\"geom\" AS \"SEAAREAgeom\", \"SEAAREA\".\"region\" AS \"SEAAREAregion\" FROM \"SEAAREA\" WHERE \"SEAAREA\".\"id\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster/SeaArea/{\"SEAAREAid\"}";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#SeaArea>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<http://xmlns.com/foaf/0.1/name> ;
+		rr:objectMap [ rr:column "\"SEAAREAregion\"" ]
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#hasGeometry> ;
+		rr:objectMap [ rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SEAAREAgeom\"}" ]
+	];
+	.
+
+
+################################################
+# TripleMap for 70: //www.opengis.net/ont/geosparql#Geometry
+
+<mapping1_70> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"SEAAREA\".\"WKT\" AS \"SEAAREAWKT\", \"SEAAREA\".\"geom\" AS \"SEAAREAgeom\" FROM \"SEAAREA\" WHERE \"SEAAREA\".\"WKT\" IS NOT NULL AND \"SEAAREA\".\"geom\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://disaster///www.opengis.net/ont/geosparql#Geometry/{\"SEAAREAgeom\"}";
+			rr:class <//www.opengis.net/ont/geosparql#Geometry>
+	];
+
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"SEAAREAWKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 71: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_71> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POLYGON3\".\"WKT\" AS \"INPUT_POLYGON3WKT\" FROM \"INPUT_POLYGON3\" WHERE \"INPUT_POLYGON3\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/polygon3";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POLYGON3WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 72: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_72> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POLYGON4\".\"WKT\" AS \"INPUT_POLYGON4WKT\" FROM \"INPUT_POLYGON4\" WHERE \"INPUT_POLYGON4\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/polygon4";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POLYGON4WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 73: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_73> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POLYGON5\".\"WKT\" AS \"INPUT_POLYGON5WKT\" FROM \"INPUT_POLYGON5\" WHERE \"INPUT_POLYGON5\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/polygon5";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POLYGON5WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 74: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_74> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_POINT3\".\"WKT\" AS \"INPUT_POINT3WKT\" FROM \"INPUT_POINT3\" WHERE \"INPUT_POINT3\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/point3";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_POINT3WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+################################################
+# TripleMap for 75: http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea
+<mapping1_75> a rr:TriplesMap;
+	rr:logicalTable [ rr:sqlQuery "SELECT \"INPUT_LINE3\".\"WKT\" AS \"INPUT_LINE3WKT\" FROM \"INPUT_LINE3\" WHERE \"INPUT_LINE3\".\"WKT\" IS NOT NULL" ];
+	rr:subjectMap [	rr:template "http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea/line3";
+			rr:class <http://www.semanticweb.org/win/ontologies/2023/1/disaster#PublishArea>
+	];
+	rr:predicateObjectMap [
+		rr:predicate 	<//www.opengis.net/ont/geosparql#asWKT> ;
+		rr:objectMap [ rr:column "\"INPUT_LINE3WKT\"" ; rr:datatype <http://www.opengis.net/ont/geosparql#wktLiteral>; ]
+	];
+	.
+
+
+
